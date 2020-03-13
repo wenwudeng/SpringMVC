@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<!--springmvc-servlet.xml 与上一步中的
+<servlet-name>springmvc</servlet-name>
+springmvc对应
+这是Spring MVC的 映射配置文件
+表示访问路径/index会交给id=indexController的bean处理
+id=indexController的bean配置为类：IndexController-->
 
-    <!--springmvc-servlet.xml 与上一步中的
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-    <servlet-name>springmvc</servlet-name>
-
-    springmvc对应
-
-    这是Spring MVC的 映射配置文件
-    表示访问路径/index会交给id=indexController的bean处理
-    id=indexController的bean配置为类：IndexController-->
-<beans>
-
-    <!--基本使用-->
+    <!--因为要使用注解方式，所以注释掉simpleUrlHandle bean-->
+  <!--  &lt;!&ndash;基本使用&ndash;&gt;
     <bean id="simpleUrlHandlerMapping"
           class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
@@ -23,6 +26,10 @@
     </bean>
 
     <bean id="indexController" class="controller.IndexController"/>
+-->
+
+    <!--注解配置，扫描controller包下所有@Controller注解的类-->
+    <context:component-scan base-package="controller"/>
 
     <!--视图定位-->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
