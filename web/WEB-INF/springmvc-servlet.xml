@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+    <!--springmvc-servlet.xml 与上一步中的
+
+    <servlet-name>springmvc</servlet-name>
+
+    springmvc对应
+
+    这是Spring MVC的 映射配置文件
+    表示访问路径/index会交给id=indexController的bean处理
+    id=indexController的bean配置为类：IndexController-->
+<beans>
+
+    <!--基本使用-->
+    <bean id="simpleUrlHandlerMapping"
+          class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/index">indexController</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="indexController" class="controller.IndexController"/>
+
+    <!--视图定位-->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/page/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+
+</beans>
