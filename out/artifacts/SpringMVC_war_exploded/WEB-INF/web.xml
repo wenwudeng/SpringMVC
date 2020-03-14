@@ -4,6 +4,17 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
 http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
+
+    <!--上传文件-->
+
+    <!--因为配置springmvc的servlet的时候，使用的路径是"/"，导致静态资源在默认情况下不能访问，所以要加上这一段，允许访问jpg。 并且必须加在springmvc的servlet之前
+    如果你配置spring-mvc使用的路径是/*.do，就不会有这个问题了。
+    注：这里仅仅是允许访问jpg,如果你要显示png,gif那么需要额外进行配置-->
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.png</url-pattern>
+    </servlet-mapping>
+
     <!--配置Spring MVC的入口 DispatcherServlet，把所有的请求都提交到该Servlet
     注意：<servlet-name>springmvc</servlet-name> 这个名字在在配置映射会用到-->
     <servlet>
